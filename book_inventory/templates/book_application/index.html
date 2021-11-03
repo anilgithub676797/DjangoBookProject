@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+{%extends 'book_application/base.html'%}
+
+{%block body_block%}
+<h1>Book Information Dashboard</h1>
+{%if books%}
+<table border='2'>
+<thead>
+<th>Book Author</th>
+<th>Book Title</th>
+<th>Book Published Date</th>
+<th>Action</th>
+</thead>
+    {%for book in books%}
+    <tr>
+        <td>{{book.author}}</td>
+        <td>{{book.title}}</td>
+        <td>{{book.published_date}}</td>
+        <td><a href="/update/{{book.id}}">Update</a>  <a href="/delete/{{book.id}}">Delete</a></td>
+    </tr>
+    {%endfor%}
+</table>
+{%else%}
+<p> Book information not available</p>
+{%endif%}
+<br><br>
+<a href="/create" class="btn btn-success btn-lg">Insert New Book Record</a>
+{%endblock%}
