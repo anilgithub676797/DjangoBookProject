@@ -15,12 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path
-from book_application import views
+from book_application.views import retrieve_books_view,create_book_view,delete_book_view,update_book_view
+from book_application_api.views import BookCRUDClassBasedView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    re_path(r'^$',views.retrieve_books_view),
-    re_path(r'^create$',views.create_book_view),
-    re_path(r'^delete/(?P<id>\d+)/$',views.delete_book_view),
-    re_path(r'^update/(?P<id>\d+)/$',views.update_book_view),
+    re_path(r'^$',retrieve_books_view),
+    re_path(r'^create$',create_book_view),
+    re_path(r'^delete/(?P<id>\d+)/$',delete_book_view),
+    re_path(r'^update/(?P<id>\d+)/$',update_book_view),
+    # re_path(r'^api/(?P<id>\d+)/$',BookDetailsClassBasedView.as_view()),
+    re_path(r'^api/$',BookCRUDClassBasedView.as_view()),
 
 ]
